@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTickerSymbolInput } from './dto/create-ticker-symbol.input';
 import { UpdateTickerSymbolInput } from './dto/update-ticker-symbol.input';
+import { InjectRepository } from '@nestjs/typeorm';
+import { TickerSymbol } from './entities/ticker-symbol.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TickerSymbolService {
+  constructor(
+    @InjectRepository(TickerSymbol)
+    private tickerSymbolRepository: Repository<TickerSymbol>,
+  ) {}
   create(createTickerSymbolInput: CreateTickerSymbolInput) {
     return 'This action adds a new tickerSymbol';
   }

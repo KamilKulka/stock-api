@@ -1,0 +1,43 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type TickerSymbol {
+  id: String!
+  symbol: String!
+  currency: String!
+  records: [Record!]
+}
+
+type Record {
+  id: String!
+  timestamp: DateTime!
+  price: Float!
+  ticker: TickerSymbol!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  tickerSymbol(id: Int!): TickerSymbol!
+}
+
+type Mutation {
+  createTickerSymbol(createTickerSymbolInput: CreateTickerSymbolInput!): TickerSymbol!
+  updateTickerSymbol(updateTickerSymbolInput: UpdateTickerSymbolInput!): TickerSymbol!
+  removeTickerSymbol(id: Int!): TickerSymbol!
+}
+
+input CreateTickerSymbolInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateTickerSymbolInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
