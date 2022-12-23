@@ -1,8 +1,7 @@
 import { Field, Float, InputType } from '@nestjs/graphql';
-import { TickerSymbol } from '../../ticker-symbol/entities/ticker-symbol.entity';
 
 @InputType()
-export class CreateRecordInput {
+export class CreateInstrumentTicker {
   @Field()
   timestamp: Date;
 
@@ -10,5 +9,5 @@ export class CreateRecordInput {
   price: number;
 
   @Field()
-  ticker: TickerSymbol;
+  tickerSymbol: string;
 }

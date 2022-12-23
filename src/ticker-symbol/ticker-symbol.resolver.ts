@@ -14,7 +14,10 @@ export class TickerSymbolResolver {
   ) {
     return this.tickerSymbolService.create(createTickerSymbolInput);
   }
-
+  @Mutation(() => TickerSymbol)
+  createTickerSymbolWithSymbol(symbol: string) {
+    return this.tickerSymbolService.createWithSymbol(symbol);
+  }
   @Query(() => [TickerSymbol])
   async getAllTickerSymbols(): Promise<TickerSymbol[]> {
     return this.tickerSymbolService.findAll();

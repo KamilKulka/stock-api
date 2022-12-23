@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { TickerSymbol } from '../../ticker-symbol/entities/ticker-symbol.entity';
 @Entity()
@@ -12,8 +12,8 @@ export class Record {
   @Field()
   timestamp: Date;
 
-  @Column()
-  @Field()
+  @Column({ type: 'real' })
+  @Field(() => Float)
   price: number;
 
   @ManyToOne(() => TickerSymbol, (tickerSymbol) => tickerSymbol.records)

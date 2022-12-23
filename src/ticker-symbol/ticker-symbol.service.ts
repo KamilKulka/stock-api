@@ -17,6 +17,15 @@ export class TickerSymbolService {
     return this.tickerSymbolRepository.save(newTicker);
   }
 
+  async createWithSymbol(symbol: string) {
+    const createTickerSymbolInput = new CreateTickerSymbolInput();
+    createTickerSymbolInput.symbol = symbol;
+    const newTicker = await this.tickerSymbolRepository.create(
+      createTickerSymbolInput,
+    );
+    return this.tickerSymbolRepository.save(newTicker);
+  }
+
   async findAll(): Promise<TickerSymbol[]> {
     return this.tickerSymbolRepository.find();
   }
