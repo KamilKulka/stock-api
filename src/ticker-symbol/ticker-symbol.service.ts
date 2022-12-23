@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTickerSymbolInput } from './dto/create-ticker-symbol.input';
-import { UpdateTickerSymbolInput } from './dto/update-ticker-symbol.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TickerSymbol } from './entities/ticker-symbol.entity';
 import { Repository } from 'typeorm';
@@ -11,23 +10,25 @@ export class TickerSymbolService {
     @InjectRepository(TickerSymbol)
     private tickerSymbolRepository: Repository<TickerSymbol>,
   ) {}
-  create(createTickerSymbolInput: CreateTickerSymbolInput) {
-    return 'This action adds a new tickerSymbol';
+  async create(createTickerSymbolInput: CreateTickerSymbolInput) {
+    const newTicker = await this.tickerSymbolRepository.create(
+      createTickerSymbolInput,
+    );
+    return this.tickerSymbolRepository.save(newTicker);
   }
 
-  findAll() {
-    return `This action returns all tickerSymbol`;
+  async findAll(): Promise<TickerSymbol[]> {
+    return this.tickerSymbolRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tickerSymbol`;
+  async findOneBySymbol(symbol: string): Promise<TickerSymbol> {
+    return await this.tickerSymbolRepository.findOneBy({ symbol: symbol });
   }
 
-  update(id: number, updateTickerSymbolInput: UpdateTickerSymbolInput) {
-    return `This action updates a #${id} tickerSymbol`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} tickerSymbol`;
+  async remove(symbol: string) {
+    const tickerToRemove = await this.tickerSymbolRepository.findOneBy({
+      symbol: symbol,
+    });
+    return this.tickerSymbolRepository.remove(tickerToRemove);
   }
 }

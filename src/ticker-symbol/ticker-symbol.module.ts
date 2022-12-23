@@ -7,5 +7,6 @@ import { TickerSymbol } from './entities/ticker-symbol.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([TickerSymbol])],
   providers: [TickerSymbolResolver, TickerSymbolService],
+  exports: [TickerSymbolService],
 })
 export class TickerSymbolModule {}
