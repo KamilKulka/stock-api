@@ -30,13 +30,6 @@ export class RecordService {
     const newRecord = this.recordRepository.create(newRecordInput);
     return this.recordRepository.save(newRecord);
   }
-  async findAll(): Promise<Record[]> {
-    return this.recordRepository.find();
-  }
-
-  async findOne(id: string): Promise<Record> {
-    return this.recordRepository.findOneBy({ id: id });
-  }
 
   async getTicker(tickerId: string): Promise<TickerSymbol> {
     return this.tickerSymbolService.findOneById(tickerId);

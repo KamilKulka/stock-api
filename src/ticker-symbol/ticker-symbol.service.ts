@@ -10,12 +10,6 @@ export class TickerSymbolService {
     @InjectRepository(TickerSymbol)
     private tickerSymbolRepository: Repository<TickerSymbol>,
   ) {}
-  async create(createTickerSymbolInput: CreateTickerSymbolInput) {
-    const newTicker = await this.tickerSymbolRepository.create(
-      createTickerSymbolInput,
-    );
-    return this.tickerSymbolRepository.save(newTicker);
-  }
 
   async createWithSymbol(symbol: string) {
     const createTickerSymbolInput = new CreateTickerSymbolInput();
@@ -35,11 +29,5 @@ export class TickerSymbolService {
   }
   async findOneById(id: string): Promise<TickerSymbol> {
     return await this.tickerSymbolRepository.findOneBy({ id: id });
-  }
-  async remove(symbol: string) {
-    const tickerToRemove = await this.tickerSymbolRepository.findOneBy({
-      symbol: symbol,
-    });
-    return this.tickerSymbolRepository.remove(tickerToRemove);
   }
 }

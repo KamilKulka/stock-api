@@ -2,7 +2,6 @@ import {
   Args,
   Mutation,
   Parent,
-  Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
@@ -21,15 +20,6 @@ export class RecordResolver {
     createInstrumentTicker: CreateInstrumentTicker,
   ) {
     return this.recordService.createRecord(createInstrumentTicker);
-  }
-  @Query(() => [Record])
-  async getAllRecords(): Promise<Record[]> {
-    return this.recordService.findAll();
-  }
-
-  @Query(() => Record)
-  async getRecordById(id: string): Promise<Record> {
-    return this.recordService.findOne(id);
   }
 
   @ResolveField((returns) => TickerSymbol)

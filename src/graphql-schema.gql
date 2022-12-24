@@ -22,26 +22,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  getAllRecords: [Record!]!
-  getRecordById: Record!
   getAllTickerSymbols: [TickerSymbol!]!
-  getTickerSymbolBySymbol(symbol: String!): TickerSymbol!
-  getTickerSymbolById(id: String!): TickerSymbol!
 }
 
 type Mutation {
   sendInstrumentTicker(createInstrumentTicker: CreateInstrumentTicker!): Record!
-  createTickerSymbol(createTickerSymbolInput: CreateTickerSymbolInput!): TickerSymbol!
-  createTickerSymbolWithSymbol: TickerSymbol!
-  removeTickerSymbol(symbol: String!): TickerSymbol!
 }
 
 input CreateInstrumentTicker {
   timestamp: DateTime!
   price: Float!
   tickerSymbol: String!
-}
-
-input CreateTickerSymbolInput {
-  symbol: String!
 }
