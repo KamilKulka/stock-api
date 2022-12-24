@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Record } from './entities/record.entity';
 import { CreateInstrumentTicker } from './dto/create-record-symbol.input';
 import { TickerSymbolService } from '../ticker-symbol/ticker-symbol.service';
-import { CreateRecordInput } from './dto/create-record.input';
+import { TickerSymbol } from '../ticker-symbol/entities/ticker-symbol.entity';
 
 @Injectable()
 export class RecordService {
@@ -21,10 +21,12 @@ export class RecordService {
         createRecordSymbolInput.tickerSymbol,
       );
     }
-    const newRecordInput = new CreateRecordInput();
-    newRecordInput.price = createRecordSymbolInput.price;
-    newRecordInput.timestamp = createRecordSymbolInput.timestamp;
-    newRecordInput.ticker = currentTickerSymbol;
+    const newRecordInput = {
+      price: createRecordSymbolInput.price,
+      timestamp: createRecordSymbolInput.timestamp,
+      ticker: currentTickerSymbol,
+      tickerId: currentTickerSymbol.id,
+    };
     const newRecord = this.recordRepository.create(newRecordInput);
     return this.recordRepository.save(newRecord);
   }
@@ -34,5 +36,9 @@ export class RecordService {
 
   async findOne(id: string): Promise<Record> {
     return this.recordRepository.findOneBy({ id: id });
+  }
+
+  async getTicker(tickerId: string): Promise<TickerSymbol> {
+    return this.tickerSymbolService.findOneById(tickerId);
   }
 }

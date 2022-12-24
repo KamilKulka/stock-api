@@ -29,7 +29,10 @@ export class TickerSymbolResolver {
   ): Promise<TickerSymbol> {
     return this.tickerSymbolService.findOneBySymbol(symbol);
   }
-
+  @Query(() => TickerSymbol)
+  async getTickerSymbolById(@Args('id') id: string): Promise<TickerSymbol> {
+    return this.tickerSymbolService.findOneById(id);
+  }
   @Mutation(() => TickerSymbol)
   async removeTickerSymbol(
     @Args('symbol')

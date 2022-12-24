@@ -33,7 +33,9 @@ export class TickerSymbolService {
   async findOneBySymbol(symbol: string): Promise<TickerSymbol> {
     return await this.tickerSymbolRepository.findOneBy({ symbol: symbol });
   }
-
+  async findOneById(id: string): Promise<TickerSymbol> {
+    return await this.tickerSymbolRepository.findOneBy({ id: id });
+  }
   async remove(symbol: string) {
     const tickerToRemove = await this.tickerSymbolRepository.findOneBy({
       symbol: symbol,

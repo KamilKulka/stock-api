@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type TickerSymbol {
+  id: String!
   symbol: String!
   records: [Record!]
 }
@@ -11,6 +12,7 @@ type Record {
   id: String!
   timestamp: DateTime!
   price: Float!
+  tickerId: String!
   ticker: TickerSymbol!
 }
 
@@ -24,6 +26,7 @@ type Query {
   getRecordById: Record!
   getAllTickerSymbols: [TickerSymbol!]!
   getTickerSymbolBySymbol(symbol: String!): TickerSymbol!
+  getTickerSymbolById(id: String!): TickerSymbol!
 }
 
 type Mutation {

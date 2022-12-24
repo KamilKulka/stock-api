@@ -10,5 +10,8 @@ export class CreateRecordInput {
   price: number;
 
   @Field()
+  tickerId: string;
+
+  @Field()
   ticker: TickerSymbol;
 }

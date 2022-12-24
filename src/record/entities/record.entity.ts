@@ -16,6 +16,10 @@ export class Record {
   @Field(() => Float)
   price: number;
 
+  @Column()
+  @Field()
+  tickerId: string;
+
   @ManyToOne(() => TickerSymbol, (tickerSymbol) => tickerSymbol.records)
   @Field((type) => TickerSymbol)
   ticker: TickerSymbol;

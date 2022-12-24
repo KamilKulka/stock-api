@@ -1,11 +1,15 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Record } from '../../record/entities/record.entity';
 
 @Entity()
 @ObjectType()
 export class TickerSymbol {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
+  @Field()
+  id: string;
+
+  @Column()
   @Field()
   symbol: string;
 

@@ -1,7 +1,15 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { Record } from './entities/record.entity';
 import { RecordService } from './record.service';
 import { CreateInstrumentTicker } from './dto/create-record-symbol.input';
+import { TickerSymbol } from '../ticker-symbol/entities/ticker-symbol.entity';
 
 @Resolver(() => Record)
 export class RecordResolver {
@@ -22,5 +30,10 @@ export class RecordResolver {
   @Query(() => Record)
   async getRecordById(id: string): Promise<Record> {
     return this.recordService.findOne(id);
+  }
+
+  @ResolveField((returns) => TickerSymbol)
+  async ticker(@Parent() record: Record): Promise<TickerSymbol> {
+    return this.recordService.getTicker(record.tickerId);
   }
 }
