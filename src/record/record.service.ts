@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Record } from './entities/record.entity';
-import { CreateInstrumentTicker } from './dto/create-record-symbol.input';
+import { CreateInstrumentTicker } from './dto/create-instrument-ticker.input';
 import { TickerSymbolService } from '../ticker-symbol/ticker-symbol.service';
 import { TickerSymbol } from '../ticker-symbol/entities/ticker-symbol.entity';
 

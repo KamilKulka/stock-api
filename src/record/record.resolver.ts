@@ -7,7 +7,7 @@ import {
 } from '@nestjs/graphql';
 import { Record } from './entities/record.entity';
 import { RecordService } from './record.service';
-import { CreateInstrumentTicker } from './dto/create-record-symbol.input';
+import { CreateInstrumentTicker } from './dto/create-instrument-ticker.input';
 import { TickerSymbol } from '../ticker-symbol/entities/ticker-symbol.entity';
 
 @Resolver(() => Record)
